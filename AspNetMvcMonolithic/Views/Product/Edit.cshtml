@@ -1,0 +1,95 @@
+
+@model AspNetMvcMonolithic.ApplicationServices.Dtos.ProductDtos.PutProductDto
+
+@{
+    ViewData["Title"] = "ویرایش محصول";
+}
+
+<div class="container py-5 product-edit-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="product-edit-card">
+
+                <div class="product-edit-header">
+                    <div class="product-edit-icon">✏️</div>
+
+                    <h2>ویرایش محصول</h2>
+
+                    <p class="mb-0">
+                        اطلاعات محصول رو تغییر بده و ذخیره کن.
+                    </p>
+                </div>
+
+                <div class="product-edit-body">
+
+                    <form asp-action="Edit" method="post">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger"
+                             role="alert">
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-4">
+                            <label asp-for="Title" class="form-label">
+                                نام محصول
+                            </label>
+
+                            <input asp-for="Title"
+                                   class="form-control product-edit-input"
+                                   placeholder="نام محصول رو وارد کن" />
+
+                            <span asp-validation-for="Title"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="UnitPrice" class="form-label">
+                                قیمت واحد (تومان)
+                            </label>
+
+                            <input asp-for="UnitPrice"
+                                   type="number"
+                                   min="0"
+                                   step="any"
+                                   class="form-control product-edit-input"
+                                   placeholder="قیمت جدید رو وارد کن" />
+
+                            <span asp-validation-for="UnitPrice"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="product-edit-actions">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                بازگشت به فهرست
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                ذخیره تغییرات
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,68 @@
+﻿@model AspNetMvcMonolithic.ApplicationServices.Dtos.PersonDtos.GetPersonDto
+
+@{
+    ViewData["Title"] = "جزئیات شخص";
+}
+
+<div class="container py-5 person-details-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="details-card">
+
+                <div class="details-header">
+                    <div class="details-icon">👤</div>
+
+                    <h2>جزئیات شخص</h2>
+
+                    <p class="mb-0">
+                        اطلاعات ثبت‌شده این شخص رو در ادامه ببین.
+                    </p>
+                </div>
+
+                <div class="details-body">
+
+                    <div class="person-detail-row">
+                        <span>شناسه</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.Id)
+                        </strong>
+                    </div>
+
+                    <div class="person-detail-row">
+                        <span>نام</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </strong>
+                    </div>
+
+                    <div class="person-detail-row">
+                        <span>نام خانوادگی</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.LastName)
+                        </strong>
+                    </div>
+
+                    <div class="details-actions">
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model.Id"
+                           class="btn btn-primary">
+                            ویرایش اطلاعات
+                        </a>
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+                            بازگشت به فهرست
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

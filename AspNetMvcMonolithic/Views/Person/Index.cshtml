@@ -1,0 +1,113 @@
+﻿
+@model IEnumerable<AspNetMvcMonolithic.ApplicationServices.Dtos.PersonDtos.GetPersonDto>
+
+@{
+    ViewData["Title"] = "فهرست اشخاص";
+}
+
+<div class="container py-5 person-list-page" dir="rtl">
+
+    <div class="person-list-header">
+        <div>
+            <h2>فهرست اشخاص</h2>
+            <p>اطلاعات اشخاص ثبت‌شده رو مدیریت کن.</p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary add-person-btn">
+            <span>＋</span>
+            ثبت شخص جدید
+        </a>
+    </div>
+
+    <div class="person-list-card">
+
+        <div class="person-list-card-header">
+            <h5>اشخاص ثبت‌شده</h5>
+
+            <span class="person-count">
+                تعداد: @(Model?.Count() ?? 0)
+            </span>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table person-table mb-0">
+
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام</th>
+                            <th>نام خانوادگی</th>
+                            <th class="text-center">عملیات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            var rowNumber = 1;
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="person-row-number">
+                                        @rowNumber
+                                    </span>
+                                </td>
+
+                                <td>@item.FirstName</td>
+
+                                <td>@item.LastName</td>
+
+                                <td>
+                                    <div class="person-table-actions">
+
+                                        <a asp-action="Details"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-info">
+                                            مشاهده
+                                        </a>
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-primary">
+                                            ویرایش
+                                        </a>
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-danger">
+                                            حذف
+                                        </a>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            rowNumber++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="person-empty-state">
+                <div class="person-empty-icon">👥</div>
+
+                <h5>هنوز شخصی ثبت نشده!</h5>
+
+                <p>برای شروع، اولین شخص رو ثبت کن.</p>
+
+                <a asp-action="Create" class="btn btn-primary">
+                    ثبت اولین شخص
+                </a>
+            </div>
+        }
+
+    </div>
+
+</div>

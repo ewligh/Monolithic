@@ -1,0 +1,66 @@
+
+@model AspNetMvcMonolithic.ApplicationServices.Dtos.ProductDtos.GetProductDto
+
+@{
+    ViewData["Title"] = "جزئیات محصول";
+}
+
+<div class="container py-5 product-details-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="product-details-card">
+
+                <div class="product-details-header">
+                    <div class="product-details-icon">📦</div>
+
+                    <h2>جزئیات محصول</h2>
+
+                    <p class="mb-0">
+                        اطلاعات محصول ثبت‌شده رو در ادامه ببین.
+                    </p>
+                </div>
+
+                <div class="product-details-body">
+
+                    <div class="product-detail-row">
+                        <span>شناسه محصول</span>
+                        <strong>@Model.Id</strong>
+                    </div>
+
+                    <div class="product-detail-row">
+                        <span>نام محصول</span>
+                        <strong>@Model.Title</strong>
+                    </div>
+
+                    <div class="product-detail-row">
+                        <span>قیمت واحد</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.UnitPrice)
+                            <small>تومان</small>
+                        </strong>
+                    </div>
+
+                    <div class="product-details-actions">
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model.Id"
+                           class="btn btn-primary">
+                            ویرایش محصول
+                        </a>
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+                            بازگشت به فهرست
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,96 @@
+﻿
+@model AspNetMvcMonolithic.ApplicationServices.Dtos.PersonDtos.PutPersonDto
+
+@{
+    ViewData["Title"] = "ویرایش شخص";
+}
+
+<div class="container py-5 person-edit-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="edit-card">
+
+                <div class="edit-header">
+                    <div class="edit-icon">✏️</div>
+
+                    <h2>ویرایش اطلاعات شخص</h2>
+
+                    <p class="mb-0">
+                        اطلاعات مورد نظر رو تغییر بده و ذخیره کن.
+                    </p>
+                </div>
+
+                <div class="edit-body">
+
+                    <form asp-action="Edit" method="post">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger"
+                             role="alert">
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-4">
+                            <label asp-for="FirstName"
+                                   class="form-label">
+                                نام
+                            </label>
+
+                            <input asp-for="FirstName"
+                                   class="form-control edit-input"
+                                   placeholder="نام جدید رو وارد کن"
+                                   autocomplete="given-name" />
+
+                            <span asp-validation-for="FirstName"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="LastName"
+                                   class="form-label">
+                                نام خانوادگی
+                            </label>
+
+                            <input asp-for="LastName"
+                                   class="form-control edit-input"
+                                   placeholder="نام خانوادگی جدید رو وارد کن"
+                                   autocomplete="family-name" />
+
+                            <span asp-validation-for="LastName"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="edit-actions">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                بازگشت به فهرست
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                ذخیره تغییرات
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,76 @@
+
+@model AspNetMvcMonolithic.ApplicationServices.Dtos.ProductDtos.DeleteProductDto
+
+@{
+    ViewData["Title"] = "حذف محصول";
+}
+
+<div class="container py-5 product-delete-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="product-delete-card">
+
+                <div class="product-delete-header">
+                    <div class="product-delete-icon">⚠️</div>
+
+                    <h2>حذف محصول</h2>
+
+                    <p class="mb-0">
+                        آیا مطمئنی که می‌خوای این محصول رو حذف کنی؟
+                    </p>
+                </div>
+
+                <div class="product-delete-body">
+
+                    <div class="product-delete-warning">
+                        توجه! بعد از حذف محصول، ممکنه بازیابی اطلاعاتش امکان‌پذیر نباشه.
+                    </div>
+
+                    <h5 class="product-delete-section-title">
+                        اطلاعات محصول
+                    </h5>
+
+                    <div class="product-detail-row">
+                        <span>نام محصول</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.Title)
+                        </strong>
+                    </div>
+
+                    <div class="product-detail-row">
+                        <span>قیمت واحد</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.UnitPrice)
+                            <small>تومان</small>
+                        </strong>
+                    </div>
+
+                    <form asp-action="Delete" method="post">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="product-delete-actions">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                انصراف
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-danger">
+                                حذف محصول
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

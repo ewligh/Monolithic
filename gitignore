@@ -1,0 +1,12 @@
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.sln.ide
+*.VC.db
+*.VC.VC.opendb
+*.opendb
+*.sdf
+*.cachefile

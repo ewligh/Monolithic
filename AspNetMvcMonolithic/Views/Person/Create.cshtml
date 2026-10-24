@@ -1,0 +1,92 @@
+﻿
+@model AspNetMvcMonolithic.ApplicationServices.Dtos.PersonDtos.PostPersonDto
+
+@{
+    ViewData["Title"] = "ثبت شخص جدید";
+}
+
+<div class="container py-5 person-form-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="person-form-card">
+
+                <div class="person-form-header">
+                    <div class="person-form-icon">👤</div>
+
+                    <h2>ثبت شخص جدید</h2>
+
+                    <p class="mb-0">
+                        لطفاً اطلاعات شخص مورد نظر را وارد کنید.
+                    </p>
+                </div>
+
+                <div class="person-form-body">
+
+                    <form asp-action="Create" method="post">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger"
+                             role="alert">
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="FirstName" class="form-label">
+                                نام
+                            </label>
+
+                            <input asp-for="FirstName"
+                                   class="form-control person-input"
+                                   placeholder="نام را وارد کنید"
+                                   autocomplete="given-name" />
+
+                            <span asp-validation-for="FirstName"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="LastName" class="form-label">
+                                نام خانوادگی
+                            </label>
+
+                            <input asp-for="LastName"
+                                   class="form-control person-input"
+                                   placeholder="نام خانوادگی را وارد کنید"
+                                   autocomplete="family-name" />
+
+                            <span asp-validation-for="LastName"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="person-form-actions">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                بازگشت به فهرست
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                ثبت اطلاعات
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

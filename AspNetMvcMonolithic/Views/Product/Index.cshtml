@@ -1,0 +1,118 @@
+
+@model IEnumerable<AspNetMvcMonolithic.ApplicationServices.Dtos.ProductDtos.GetProductDto>
+
+@{
+    ViewData["Title"] = "فهرست محصولات";
+}
+
+<div class="container py-5 product-list-page" dir="rtl">
+
+    <div class="product-list-header">
+        <div>
+            <h2>فهرست محصولات</h2>
+            <p>محصولات ثبت‌شده رو مدیریت کن.</p>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary add-product-btn">
+            <span>＋</span>
+            ثبت محصول جدید
+        </a>
+    </div>
+
+    <div class="product-list-card">
+
+        <div class="product-list-card-header">
+            <h5>محصولات ثبت‌شده</h5>
+
+            <span class="product-count">
+                تعداد: @(Model?.Count() ?? 0)
+            </span>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table product-table mb-0">
+
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام محصول</th>
+                            <th>قیمت واحد</th>
+                            <th class="text-center">عملیات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @{
+                            var rowNumber = 1;
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="product-row-number">
+                                        @rowNumber
+                                    </span>
+                                </td>
+
+                                <td class="product-title-cell">
+                                    @item.Title
+                                </td>
+
+                                <td class="product-price-cell">
+                                    @item.UnitPrice.ToString("N0")
+                                    <small>تومان</small>
+                                </td>
+
+                                <td>
+                                    <div class="product-table-actions">
+
+                                        <a asp-action="Details"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-info">
+                                            مشاهده
+                                        </a>
+
+                                        <a asp-action="Edit"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-primary">
+                                            ویرایش
+                                        </a>
+
+                                        <a asp-action="Delete"
+                                           asp-route-id="@item.Id"
+                                           class="btn btn-sm btn-outline-danger">
+                                            حذف
+                                        </a>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            rowNumber++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="product-empty-state">
+                <div class="product-empty-icon">📦</div>
+
+                <h5>هنوز محصولی ثبت نشده!</h5>
+
+                <p>برای شروع، اولین محصولت رو ثبت کن.</p>
+
+                <a asp-action="Create" class="btn btn-primary">
+                    ثبت اولین محصول
+                </a>
+            </div>
+        }
+
+    </div>
+
+</div>

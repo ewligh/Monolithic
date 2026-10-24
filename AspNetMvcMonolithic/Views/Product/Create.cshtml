@@ -1,0 +1,93 @@
+
+@model AspNetMvcMonolithic.ApplicationServices.Dtos.ProductDtos.PostProductDto
+
+@{
+    ViewData["Title"] = "ثبت محصول جدید";
+}
+
+<div class="container py-5 product-create-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="product-form-card">
+
+                <div class="product-form-header">
+                    <div class="product-form-icon">📦</div>
+
+                    <h2>ثبت محصول جدید</h2>
+
+                    <p class="mb-0">
+                        اطلاعات محصول مورد نظرت رو وارد کن.
+                    </p>
+                </div>
+
+                <div class="product-form-body">
+
+                    <form asp-action="Create" method="post">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger"
+                             role="alert">
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Title" class="form-label">
+                                نام محصول
+                            </label>
+
+                            <input asp-for="Title"
+                                   class="form-control product-input"
+                                   placeholder="مثلاً لپ‌تاپ یا گوشی موبایل" />
+
+                            <span asp-validation-for="Title"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="UnitPrice" class="form-label">
+                                قیمت واحد (تومان)
+                            </label>
+
+                            <input asp-for="UnitPrice"
+                                   type="number"
+                                   min="0"
+                                   step="any"
+                                   class="form-control product-input"
+                                   placeholder="قیمت محصول رو وارد کن" />
+
+                            <span asp-validation-for="UnitPrice"
+                                  class="text-danger small">
+                            </span>
+                        </div>
+
+                        <div class="product-form-actions">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                بازگشت به فهرست
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                ثبت محصول
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,73 @@
+﻿
+@model AspNetMvcMonolithic.ApplicationServices.Dtos.PersonDtos.DeletePersonDto
+
+@{
+    ViewData["Title"] = "حذف شخص";
+}
+
+<div class="container py-5 person-delete-page" dir="rtl">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+
+            <div class="delete-card">
+
+                <div class="delete-header">
+                    <div class="delete-icon">⚠️</div>
+
+                    <h2>حذف شخص</h2>
+
+                    <p class="mb-0">
+                        آیا مطمئنی که می‌خوای این شخص رو حذف کنی؟
+                    </p>
+                </div>
+
+                <div class="delete-body">
+
+                    <div class="delete-warning">
+                        توجه! بعد از حذف، ممکنه بازیابی اطلاعات امکان‌پذیر نباشه.
+                    </div>
+
+                    <h5 class="delete-section-title">
+                        اطلاعات شخص
+                    </h5>
+
+                    <div class="person-detail-row">
+                        <span>نام</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </strong>
+                    </div>
+
+                    <div class="person-detail-row">
+                        <span>نام خانوادگی</span>
+                        <strong>
+                            @Html.DisplayFor(model => model.LastName)
+                        </strong>
+                    </div>
+
+                    <form asp-action="Delete" method="post">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="delete-actions">
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                انصراف و بازگشت
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-danger">
+                                حذف شخص
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
